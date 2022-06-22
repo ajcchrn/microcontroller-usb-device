@@ -7,9 +7,9 @@
 namespace AVR
 {
 	// I/O-ports
-	Port &port_b = *reinterpret_cast<Port *>(0x23);
-	Port &port_c = *reinterpret_cast<Port *>(0x26);
-	Port &port_d = *reinterpret_cast<Port *>(0x29);
+	Port &PortB = *reinterpret_cast<Port *>(0x23);
+	Port &PortC = *reinterpret_cast<Port *>(0x26);
+	Port &PortD = *reinterpret_cast<Port *>(0x29);
 }
 
 #endif // AVR_ATMEGA8U2
