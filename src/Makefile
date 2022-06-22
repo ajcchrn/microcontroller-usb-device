@@ -6,13 +6,14 @@ CXX = avr-g++
 OBJCOPY = avr-objcopy
 AVRDUDE = avrdude
 AVRDUDE_FLAGS = -c avrispmkII -p $(MCU)
+INCLUDE_PATH = ../include
 
 TARGET = test_ports
-OBJFILES = $(TARGET).o
+OBJFILES = $(TARGET).o Port.o
 CFLAGS = -Os -g -Wall -Wpedantic \
 	 -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums \
 	 -ffunction-sections -fdata-sections \
-	 -mmcu=$(MCU)
+	 -mmcu=$(MCU) -I$(INCLUDE_PATH)
 CXXFLAGS = -std=c++17 $(CFLAGS)
 CPPFLAGS = -DF_CPU=$(F_CPU)
 LDFLAGS = -Wl,-Map,$(TARGET).map -Wl,--gc-sections -mmcu=$(MCU)
