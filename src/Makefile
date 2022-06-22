@@ -10,10 +10,7 @@ INCLUDE_PATH = ../include
 
 TARGET = test_ports
 OBJFILES = $(TARGET).o Port.o USART.o
-CFLAGS = -Os -g -Wall -Wpedantic \
-	 -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums \
-	 -ffunction-sections -fdata-sections \
-	 -mmcu=$(MCU) -I$(INCLUDE_PATH)
+CFLAGS = -Os -g -Wall -Wpedantic -mmcu=$(MCU) -I$(INCLUDE_PATH)
 CXXFLAGS = -std=c++17 $(CFLAGS)
 CPPFLAGS = -DF_OSC=$(F_OSC)
 LDFLAGS = -Wl,-Map,$(TARGET).map -Wl,--gc-sections -mmcu=$(MCU)
