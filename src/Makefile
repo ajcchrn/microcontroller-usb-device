@@ -16,14 +16,15 @@ CFLAGS = -Os -g -Wall -Wpedantic -mmcu=$(MCU) -I$(INCLUDE_PATH)
 CXXFLAGS = -std=c++17 $(CFLAGS)
 CPPFLAGS = -DF_OSC=$(F_OSC)
 LDFLAGS = -Wl,-Map,$(TARGET).map -Wl,--gc-sections -mmcu=$(MCU)
+LIBFLAGS := -L$(AVRLIB_PATH) -lavrcxx
 
 all: $(TARGET).hex
 
 $(TARGET).hex: $(TARGET).elf
 	$(OBJCOPY) -j .text -j .data -O ihex $< $@
 
-$(TARGET).elf: $(OBJFILES) $(AVRLIB_PATH)/libavrcxx.a
-	$(CXX) $(LDFLAGS) $^ -o $@
+$(TARGET).elf: $(OBJFILES)
+	$(CXX) $(LDFLAGS) $^ $(LIBFLAGS) -o $@
 
 %.o: %.cpp
 	$(CXX) -c $(CXXFLAGS) $(CPPFLAGS) $< -o $@ 
