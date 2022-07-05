@@ -9,7 +9,6 @@ AVRDUDE_FLAGS = -c avrispmkII -p $(MCU)
 
 INCLUDE_PATH := $(PWD)/../include
 AVRLIB_PATH := $(PWD)/../lib/avr
-AVRLIB_OBJS := $(AVRLIB_PATH)/Port.o $(AVRLIB_PATH)/USART.o
 
 TARGET = test_ports
 OBJFILES = $(TARGET).o
@@ -23,15 +22,11 @@ all: $(TARGET).hex
 $(TARGET).hex: $(TARGET).elf
 	$(OBJCOPY) -j .text -j .data -O ihex $< $@
 
-$(TARGET).elf: $(OBJFILES) $(AVRLIB_OBJS)
+$(TARGET).elf: $(OBJFILES) $(AVRLIB_PATH)/libavrcxx.a
 	$(CXX) $(LDFLAGS) $^ -o $@
 
 %.o: %.cpp
 	$(CXX) -c $(CXXFLAGS) $(CPPFLAGS) $< -o $@ 
-
-$(AVRLIB_OBJS):
-	$(MAKE) -C $(AVRLIB_PATH) CXX=$(CXX) CXXFLAGS="$(CXXFLAGS)" \
-	       	CPPFLAGS="$(CPPFLAGS)" 
 
 memstat: $(TARGET).hex
 	avr-size -C --mcu=$(MCU) $(TARGET).elf
