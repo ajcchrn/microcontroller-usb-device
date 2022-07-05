@@ -1,10 +1,12 @@
 #include <avr/ATmega8U2.h>
-#include <stdint.h>
+#include <cstdint>
 
 int main()
 {
-	AVR::PortD.set_data_direction(0x2);
-	AVR::PortD.set_data_register(0x2);
+	std::uint8_t bit_value = 0x01;
+
+	AVR::PortD.set_data_direction(bit_value);
+	AVR::PortD.set_data_register(bit_value);
 
 	AVR::USART1.init(9600ul);
 	AVR::USART1.write('H');
