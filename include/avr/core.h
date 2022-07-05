@@ -5,7 +5,7 @@
 
 namespace AVR
 {
-	typedef uint8_t volatile dev_reg;
+	using dev_reg = volatile uint8_t;
 }
 
 #endif // AVR_CORE_H
