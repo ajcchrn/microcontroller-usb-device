@@ -1,6 +1,6 @@
+# Shared Makefile with AVR specific definitions
 ROOT_PATH ?= $(shell git rev-parse --show-toplevel)
 include $(ROOT_PATH)/common.mk
-# Shared Makefile with AVR specific definitions
 
 CC = avr-gcc
 OBJCOPY = avr-objcopy
