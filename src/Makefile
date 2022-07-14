@@ -1,6 +1,7 @@
 include ../avr.mk
 MCU = atmega8u2
 TARGET = test
+LIBFLAGS := -L$(LIB_PATH) -lavr
 
 all: $(BUILD_PATH)/$(TARGET).elf
 
