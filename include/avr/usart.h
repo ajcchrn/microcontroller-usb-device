@@ -1,3 +1,3 @@
-void usart_init(void);
+void usart_init(unsigned int);
 
 void usart_putchar(char);

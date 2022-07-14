@@ -2,11 +2,9 @@
 #include <avr/io.h>
 #include <avr/usart.h>
 
-#define BAUD_RATE 9600UL
-
-void usart_init(void)
+void usart_init(unsigned int baud_rate)
 {
-	uint16_t UBRR = F_OSC / (16ul*BAUD_RATE) - 1;
+	uint16_t UBRR = F_OSC / (16ul*baud_rate) - 1;
 
 	// Set baud rate registers
 	UBRR1L = (uint8_t)(0x00FF & UBRR);
