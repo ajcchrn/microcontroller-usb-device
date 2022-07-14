@@ -2,8 +2,9 @@ include ../../avr.mk
 
 TARGET = libavr.a
 OBJFILES = usart.o
-MCU ?= avr35 # For ATmega8u2
-F_OSC ?= 16000000UL
+#MCU ?= avr35 # For ATmega8u2
+MCU ?= atmega8u2 # Required for avr/io.h
+F_OSC ?= 16000000UL # Required by usart.h
 
 all: $(LIB_PATH)/$(TARGET)
 
